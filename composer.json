@@ -1,9 +1,8 @@
 {
-    "name": "techlify-inc/laravel-user-management",
-    "description": "A Module with API Services for Laravel User Management",
+    "name": "techlify-inc/laravel-model-logger",
+    "description": "A Module with that providers event logging for Laravel Models",
     "type": "package",
     "require": {
-        "techlify-inc/laravel-rbac": ">=0.3.0"
     },
     "license": "MIT",
     "authors": [
@@ -15,16 +14,16 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "TechlifyInc\\LaravelUserManagement\\": "src/"
+            "TechlifyInc\\LaravelModelLogger\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "TechlifyInc\\LaravelUserManagement\\LaravelUserManagementServiceProvider"
+                "TechlifyInc\\LaravelModelLogger\\LaravelModelLoggerServiceProvider"
             ],
             "aliases": {
-                "Debugbar": "TechlifyInc\\LaravelUserManagement\\LaravelUserManagementFacade"
+                "Debugbar": "TechlifyInc\\LaravelModelLogger\\LaravelModelLoggerFacade"
             }
         }
     }
