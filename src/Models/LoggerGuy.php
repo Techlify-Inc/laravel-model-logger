@@ -11,18 +11,18 @@ class LoggerGuy extends Model
      * 
      * @param string $object_type               What type of object is this log for
      * @param any $object_id                    ID of the object the log is being created for. 0 if there was a failure, -1 if the 
-     * @param integer $activity_log_action_id   The action that is being performed
+     * @param integer $action   The action that is being performed
      * @param boolean $is_successful            Whether the action was successful or not
      * @param array $object                     Object if you'd like to log the object
      * @param array $data                       Any Other Data that relates to the log
      */
-    public static function log($object_type, $object_id, $activity_log_action_id, $is_successful, $object = "", $data = "")
+    public static function log($object_type, $object_id, $action, $is_successful, $object = [], $data = [])
     {
         $log = new ActivityLog();
         $log->user_id = auth()->id();
         $log->object_type = $object_type;
         $log->object_id = $object_id;
-        $log->activity_log_action_id = $activity_log_action_id;
+        $log->action = $action;
         $log->is_successful = $is_successful;
         $log->object = $object;
         $log->data = $data;
@@ -38,7 +38,7 @@ class LoggerGuy extends Model
      */
     public static function logInserted($object_type, $object_id, $object)
     {
-        return LoggerGuy::log($object_type, $object_id, LogAction::CREATED, true, $object, "");
+        return LoggerGuy::log($object_type, $object_id, LogAction::CREATED, true, $object);
     }
 
     /**
@@ -49,7 +49,7 @@ class LoggerGuy extends Model
      */
     public static function logUpdated($object_type, $object_id, $object)
     {
-        return LoggerGuy::log($object_type, $object_id, LogAction::UPDATED, true, $object, "");
+        return LoggerGuy::log($object_type, $object_id, LogAction::UPDATED, true, $object);
     }
 
     /**
@@ -59,7 +59,7 @@ class LoggerGuy extends Model
      */
     public static function logViewed($object_type, $object_id, $object, $data = [])
     {
-        return LoggerGuy::log($object_type, $object_id, LogAction::VIEWED, true, $object, "", $data);
+        return LoggerGuy::log($object_type, $object_id, LogAction::VIEWED, true, $object, [], $data);
     }
 
     /**
@@ -69,6 +69,6 @@ class LoggerGuy extends Model
      */
     public static function logDeleted($object_type, $object_id, $object)
     {
-        return LoggerGuy::log($object_type, $object_id, LogAction::DELETED, true, $object, "", "");
+        return LoggerGuy::log($object_type, $object_id, LogAction::DELETED, true, $object);
     }
 }

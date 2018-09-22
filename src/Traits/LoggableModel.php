@@ -29,7 +29,6 @@ trait LoggableModel
             }
             $reflect = new ReflectionClass($model);
             LoggerGuy::logInserted($reflect->getShortName(), $model->id, $model);
-            Log::debug($reflect->getShortName() . '.created');
         });
 
         static::updated(function(Model $model) {
@@ -37,7 +36,7 @@ trait LoggableModel
                 return;
             }
             $reflect = new ReflectionClass($model);
-            Log::debug($reflect->getShortName() . '.updated');
+            LoggerGuy::logUpdated($reflect->getShortName(), $model->id, $model);
         });
 
         static::deleted(function(Model $model) {
@@ -45,7 +44,7 @@ trait LoggableModel
                 return;
             }
             $reflect = new ReflectionClass($model);
-            Log::debug($reflect->getShortName() . '.deleted');
+            LoggerGuy::logDeleted($reflect->getShortName(), $model->id, $model);
         });
     }
 }

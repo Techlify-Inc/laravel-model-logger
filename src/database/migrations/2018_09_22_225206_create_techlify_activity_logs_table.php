@@ -14,12 +14,12 @@ class CreateTechlifyActivityLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_loggin_activity_logs', function (Blueprint $table) {
+        Schema::create('model_logging_activity_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('object_type');
             $table->integer('object_id');
-            $table->string('activity_log_action');
+            $table->string('action');
             $table->boolean('is_successful')->default(true);
             $table->text('object');
             $table->text('data');
@@ -34,6 +34,6 @@ class CreateTechlifyActivityLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('techlify_activity_logs');
+        Schema::dropIfExists('model_logging_activity_logs');
     }
 }
