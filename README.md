@@ -1,13 +1,13 @@
-# LaravelUserManagement
+# LaravelModelLogger
 
-A simple package for Laravel that provides user management services
+A simple package for Laravel that provides model event logging services
 
 ## Installation
 
 Install this package with composer using the following command:
 
 ```
-composer require techlify-inc/laravel-user-management
+composer require techlify-inc/laravel-model-logger
 ```
 
 Run migrations
@@ -18,47 +18,22 @@ $ php artisan migrate
 
 ## Usage
 
-This package provides the following API services that your frontend can use: 
+Just add the following trait to models that needs logging: 
 
-### User Management
 
 ```php
-
-// Get the set of users
-GET api/users
-
-// Get a single user
-GET api/users/{id}
-
-// Add a new user
-POST api/users
-
-// Update a user record
-PATCH api/users/{id}
-
-// Delete a user record
-DELETE api/users/{id}
-
+use TechlifyInc\LaravelModelLogger\Traits\LoggableModel;
 ```
 
 
-### User Password Management
+### Configuring which events to Log
+
+To disable logging for certain events, in your model, you can do: 
 
 ```php
 
-// Change the current user password
-POST api/user/current/update-password {current_password, new_password}
-
-```
-
-### User Session Management
-
-```php
-
-// Log out the currently logged in user
-POST api/user/logout
-
-// Get the User record of the currently logged in user
-GET api/user/current
+protected $logCreated = false;
+protected $logUpdated = false;
+protected $logDeleted = false;
 
 ```
