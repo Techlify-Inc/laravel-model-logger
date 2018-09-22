@@ -1,7 +1,6 @@
 <?php
 namespace TechlifyInc\LaravelModelLogger\Traits;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use ReflectionClass;
 use TechlifyInc\LaravelModelLogger\Models\LoggerGuy;
